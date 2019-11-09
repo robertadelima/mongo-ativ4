@@ -1,6 +1,8 @@
 ﻿using System;
+using backend.Infra.Repository;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System.Linq;
 
 namespace Ativ4Mongo
 {
@@ -13,18 +15,11 @@ namespace Ativ4Mongo
         }
 
         public void testConnection(){
-             var client = new MongoClient("mongodb://localhost:27017");
-             var database = client.GetDatabase("foo");
-             var collection = database.GetCollection<BsonDocument>("bar");
+            var repo = new BlogRepository();
+            var blogs = repo.getBlogs();
+            System.Console.WriteLine(string.Join(",", blogs.Select(p => p.description)));
 
-            collection.InsertOne(new BsonDocument("Name", "Jack"));
-
-            var list = collection.Find(new BsonDocument("Name", "Jack")).ToList();
-
-            foreach(var document in list)   
-            {
-                Console.WriteLine(document["Name"]);    
-            }   
+           
         }
     }
 }

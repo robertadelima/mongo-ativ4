@@ -1,11 +1,12 @@
 using System;
+using backend.Domain;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace backend.Domain
 {
-    public class Entity 
+    public abstract class Entity 
     {
-        public int id;  
+        public ObjectId id;  
     }
 }
