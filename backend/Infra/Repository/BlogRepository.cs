@@ -20,12 +20,7 @@ namespace backend.Infra.Repository
         }
 
         public void Connection(){
-            /* collection.InsertOne(new BsonDocument("Name", "Jack"));
-            var list = collection.Find(new BsonDocument("Name", "Jack")).ToList();
-            foreach(var document in list)   
-            {
-                Console.WriteLine(document["Name"]);    
-            } */ 
+            
         }
 
         public List<Blog> getBlogs(){
