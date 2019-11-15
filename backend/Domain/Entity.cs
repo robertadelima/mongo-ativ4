@@ -1,9 +1,9 @@
 using System;
-using backend.Domain;
+using Ativ4Mongo.backend.Domain;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace backend.Domain
+namespace Ativ4Mongo.backend.Domain
 {
     public abstract class Entity 
     {
