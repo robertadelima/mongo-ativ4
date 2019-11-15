@@ -8,7 +8,7 @@ using Ativ4Mongo.backend.Infra.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace Ativ4Mongo.Controllers
+namespace Ativ4Mongo.backend.Api.Controllers
 {
     [ApiController]
     [Route("[controller]")]
