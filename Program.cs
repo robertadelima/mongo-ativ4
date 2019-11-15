@@ -1,25 +1,26 @@
-﻿using System;
-using backend.Infra.Repository;
-using MongoDB.Bson;
-using MongoDB.Driver;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
-namespace Ativ4Mongo
+namespace mongo_ativ4
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            new Program().testConnection();
+            CreateHostBuilder(args).Build().Run();
         }
 
-        public void testConnection(){
-            var repo = new BlogRepository();
-            var blogs = repo.getBlogs();
-            System.Console.WriteLine(string.Join(",", blogs.Select(p => p.description)));
-
-           
-        }
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
     }
 }
