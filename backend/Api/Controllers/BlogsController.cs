@@ -22,6 +22,7 @@ namespace Ativ4Mongo.backend.Api.Controllers
         }
 
         [HttpGet]
+        [Route("")]
         public IEnumerable<BlogsViewModel> Get()
         {
             return blogRepository.getBlogs()
@@ -31,5 +32,7 @@ namespace Ativ4Mongo.backend.Api.Controllers
                     PublishDate = DateTime.Now
                 } );
         }
+
+
     }
 }
