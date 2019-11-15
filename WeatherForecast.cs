@@ -1,6 +1,6 @@
 using System;
 
-namespace mongo_ativ4
+namespace Ativ4Mongo
 {
     public class WeatherForecast
     {

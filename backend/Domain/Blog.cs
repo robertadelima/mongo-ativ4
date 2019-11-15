@@ -1,6 +1,6 @@
 using System;
 
-namespace backend.Domain
+namespace Ativ4Mongo.backend.Domain
 {
     public class Blog : Entity
     {

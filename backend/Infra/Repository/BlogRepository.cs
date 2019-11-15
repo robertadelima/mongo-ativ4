@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using backend.Domain;
+using Ativ4Mongo.backend.Domain;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace backend.Infra.Repository
+namespace Ativ4Mongo.backend.Infra.Repository
 {
     public class BlogRepository
     {

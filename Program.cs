@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace mongo_ativ4
+namespace Ativ4Mongo
 {
     public class Program
     {

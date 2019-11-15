@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
-namespace mongo_ativ4.Controllers
+namespace Ativ4Mongo.Controllers
 {
     [ApiController]
     [Route("[controller]")]

@@ -2,7 +2,7 @@ using System;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace backend.Infra.Repository
+namespace Ativ4Mongo.backend.Infra.Repository
 {
     public interface IRepository
     {
