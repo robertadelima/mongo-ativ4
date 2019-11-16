@@ -26,9 +26,17 @@ namespace Ativ4Mongo.backend.Infra.Repository
         public List<Blog> getBlogs(){
 
              var docs = collection.Find(_ => true).ToList();
-             Console.WriteLine(docs);
              return docs;
         }
+
+        //Provavelmente será trocado para Find por id ou owner.username
+        //Só fiz para testar a estrutura
+        public List<Blog> getBlogsByTitle(string pTitle){
+            var docs = collection.Find(p => p.title == pTitle).ToList();
+            return docs;
+        }
+
+        
 
 
 

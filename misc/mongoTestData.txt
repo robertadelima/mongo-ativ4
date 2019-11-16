@@ -1,6 +1,13 @@
 
+//Populando dados na estrutura correta
 use Univali;
 db.Blogs.insertMany([{title: "Blog da Univali", owner:{name: "José João", credentials: {username: "Univali", password: "123Univali"}}, description: "Blog sobre a vida no campus"},{title: "Blog da Roberta", owner:{name: "Roberta", credentials: {username: "RobertaRL", password: "Sistemas123"}} , description: "Blog sobre Programação"}])
 
+// Populando dados na estrutura simplificada
+//(Onwer com atributos name, username e password flat)
 use Univali;
-db.Blogs.insertMany([{title: "Blog da Univali", owner:{name: "José João", username: "Univali", password: "123Univali"}, description: "Blog sobre a vida no campus"},{title: "Blog da Roberta", owner:{name: "Roberta", username: "RobertaRL", password: "Sistemas123"} , description: "Blog sobre Programação"}])
+db.Blogs.insertMany([{title: "univaliblog", owner:{name: "José João", username: "Univali", password: "123Univali"}, description: "Blog sobre a vida no campus"},{title: "robertablog", owner:{name: "Roberta", username: "RobertaRL", password: "Sistemas123"} , description: "Blog sobre Programação"}])
+
+//ROTAS TESTADAS FUNCIONANDO:
+https://localhost:5001/Blogs
+https://localhost:5001/Blogs/robertablog
