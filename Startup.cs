@@ -28,6 +28,7 @@ namespace Ativ4Mongo
         {
             services.AddControllers();
             services.AddTransient<BlogRepository>();
+            services.AddTransient<PostRepository>();
     
         }
 

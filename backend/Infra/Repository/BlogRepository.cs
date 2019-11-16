@@ -37,6 +37,10 @@ namespace Ativ4Mongo.backend.Infra.Repository
             return docs;
         }
 
+        public void Add(Blog blog){
+            collection.InsertOne(blog);
+        }
+
         
 
 

@@ -1,3 +1,5 @@
+using System.Net;
+using System.Net.Http;
 
 using System;
 using System.Collections.Generic;
@@ -63,7 +65,26 @@ namespace Ativ4Mongo.backend.Api.Controllers
                     
                 } );
         }  
- 
+
+        [HttpPost]
+        public IActionResult CreateBlog([FromBody] Blog blog){
+            if(blog == null){
+                return BadRequest();
+            }
+
+            blogRepository.Add(blog);
+            return new NoContentResult();
+
+        }
+
+        /*[HttpDelete("{id}")]
+        public IActionResult Delete(string title){
+            var blog = blogRepository.getBlogsByTitle(title);
+
+            if(blog == null){
+                return NotFound();
+            }
+        }*/
 
 
     }
