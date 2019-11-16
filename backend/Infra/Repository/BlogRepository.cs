@@ -26,6 +26,7 @@ namespace Ativ4Mongo.backend.Infra.Repository
         public List<Blog> getBlogs(){
 
              var docs = collection.Find(_ => true).ToList();
+
              return docs;
         }
 
