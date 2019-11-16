@@ -32,10 +32,10 @@ namespace Ativ4Mongo.backend.Api.Controllers
                     Title = entidade.title,
                     Owner = new OwnerViewModel{
                         name = entidade.owner.name != null ? entidade.owner.name : "",
-                        credentials = new CredentialsViewModel{
+                        /*credentials = new CredentialsViewModel{
                             username = entidade.owner.credentials.username != null ? entidade.owner.credentials.username : "",
                             password = entidade.owner.credentials.password != null ? entidade.owner.credentials.password : "",
-                        }
+                        }*/
                     },
                     Description = entidade.description,
                     
@@ -54,10 +54,10 @@ namespace Ativ4Mongo.backend.Api.Controllers
                     Title = entidade.title,
                     Owner = new OwnerViewModel{
                         name = entidade.owner.name != null ? entidade.owner.name : "",
-                        credentials = new CredentialsViewModel{
+                        /*credentials = new CredentialsViewModel{
                             username = entidade.owner.credentials.username != null ? entidade.owner.credentials.username : "",
                             password = entidade.owner.credentials.password != null ? entidade.owner.credentials.password : "",
-                        }
+                        }*/
                     },
                     Description = entidade.description,
                     
