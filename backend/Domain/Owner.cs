@@ -7,10 +7,7 @@ namespace Ativ4Mongo.backend.Domain
     {
         public string name;
 
-        public string username;
-
-        public string password;
-        //public Credential credentials;
+        public Credential credentials;
 
     }
 }
