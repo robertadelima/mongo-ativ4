@@ -8,6 +8,7 @@ namespace Ativ4Mongo.backend.Domain
         public Owner owner;
         public string title;
         public string description;
+        
         //public Post[] posts;
 
     }

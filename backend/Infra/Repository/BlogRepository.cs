@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Ativ4Mongo.backend.Api.ViewModels;
 using Ativ4Mongo.backend.Domain;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -8,14 +9,16 @@ namespace Ativ4Mongo.backend.Infra.Repository
 {
     public class BlogRepository
     {
-        IMongoCollection<Blog> collection;
+        IMongoCollection<Blog> collectionBlog;
+        IMongoCollection<BlogsViewModel> collectionBlogViewModel;
 
 
         public BlogRepository()
         {
             var client = new MongoClient("mongodb://localhost:27017");
             var database = client.GetDatabase("Univali");
-            collection = database.GetCollection<Blog>("Blogs");
+            collectionBlog = database.GetCollection<Blog>("Blogs");
+            collectionBlogViewModel = database.GetCollection<BlogsViewModel>("Blogs");
 
         }
 
@@ -25,7 +28,7 @@ namespace Ativ4Mongo.backend.Infra.Repository
 
         public List<Blog> getBlogs(){
 
-             var docs = collection.Find(_ => true).ToList();
+             var docs = collectionBlog.Find(_ => true).ToList();
 
              return docs;
         }
@@ -33,12 +36,12 @@ namespace Ativ4Mongo.backend.Infra.Repository
         //Provavelmente será trocado para Find por id ou owner.username
         //Só fiz para testar a estrutura
         public List<Blog> getBlogsByTitle(string pTitle){
-            var docs = collection.Find(p => p.title == pTitle).ToList();
+            var docs = collectionBlog.Find(p => p.title == pTitle).ToList();
             return docs;
         }
 
-        public void Add(Blog blog){
-            collection.InsertOne(blog);
+        public void Add(BlogsViewModel blog){
+            collectionBlogViewModel.InsertOne(blog);
         }
 
         

@@ -67,7 +67,7 @@ namespace Ativ4Mongo.backend.Api.Controllers
         }  
 
         [HttpPost]
-        public IActionResult CreateBlog([FromBody] Blog blog){
+        public IActionResult CreateBlog([FromBody] BlogsViewModel blog){
             if(blog == null){
                 return BadRequest();
             }

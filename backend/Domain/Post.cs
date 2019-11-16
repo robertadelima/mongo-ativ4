@@ -14,7 +14,6 @@ namespace Ativ4Mongo.backend.Domain
             firstContent = pFirstContent;
         } 
 
-       
         public string title;
 
         public string firstContent;
