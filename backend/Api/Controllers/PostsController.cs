@@ -42,7 +42,7 @@ namespace Ativ4Mongo.backend.Api.Controllers
             if(post == null){
                 return BadRequest();
             }
-
+            post.publishDate = DateTime.Now;
             postRepository.Add(post);
             return new NoContentResult();
         }

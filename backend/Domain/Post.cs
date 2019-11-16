@@ -12,13 +12,14 @@ namespace Ativ4Mongo.backend.Domain
         public Post(string pTitle, string pFirstContent){
             title = pTitle;
             firstContent = pFirstContent;
+            publishDate = DateTime.Now;
         } 
 
         public string title;
 
         public string firstContent;
 
-        //public DateTime publishDate;
+        public DateTime publishDate;
 
     }
 }

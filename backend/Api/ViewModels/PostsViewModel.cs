@@ -19,6 +19,7 @@ namespace Ativ4Mongo.backend.Api.ViewModels
         [BsonRequired()]    
         public string FirstContent { get; set; }
 
-        //public DateTime publishDate { get; set; }
+        public DateTime publishDate { get; set; }
+
     }
 }
