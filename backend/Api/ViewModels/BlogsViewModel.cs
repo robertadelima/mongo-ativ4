@@ -1,4 +1,5 @@
 using System;
+using Ativ4Mongo.backend.Domain;
 using MongoDB.Bson;
 
 namespace Ativ4Mongo.backend.Api.ViewModels
@@ -10,7 +11,8 @@ namespace Ativ4Mongo.backend.Api.ViewModels
         public string Title { get; set; }
         //public string Owner {get; set;}
 
-        public string Owner {get; set;}
+        public Owner Owner {get; set;}
+        
         public string Description { get; set; }
 
 
