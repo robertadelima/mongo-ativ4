@@ -7,6 +7,6 @@ namespace Ativ4Mongo.backend.Domain
 {
     public abstract class Entity 
     {
-        public ObjectId id;  
+        public ObjectId _id;  
     }
 }

@@ -27,12 +27,15 @@ namespace Ativ4Mongo.backend.Api.Controllers
         {
             return blogRepository.getBlogs()
                 .Select(entidade => new BlogsViewModel() {
+                    Id = entidade._id,
                     Title = entidade.title,
-                    Summary = entidade.description,
-                    PublishDate = DateTime.Now
+                    Owner = entidade.owner,
+                    Description = entidade.description,
+                    
                 } );
         }
 
+        
 
     }
 }
