@@ -29,7 +29,11 @@ namespace Ativ4Mongo.backend.Api.Controllers
                 .Select(entidade => new BlogsViewModel() {
                     Id = entidade._id,
                     Title = entidade.title,
-                    Owner = entidade.owner,
+                    Owner = new Domain.Owner{
+                        name = entidade.owner.name != null ? entidade.owner.name : "",
+                        username = entidade.owner.username != null ? entidade.owner.username : "",
+                        password = entidade.owner.password != null ? entidade.owner.password : ""
+                    },
                     Description = entidade.description,
                     
                 } );

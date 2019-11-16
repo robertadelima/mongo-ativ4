@@ -3,10 +3,14 @@ using MongoDB.Bson;
 
 namespace Ativ4Mongo.backend.Domain
 {
-    public class Owner : Entity
+    public class Owner
     {
         public string name;
-        public Credential credentials;
+
+        public string username;
+
+        public string password;
+        //public Credential credentials;
 
     }
 }

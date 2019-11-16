@@ -1,2 +1,6 @@
+
 use Univali;
 db.Blogs.insertMany([{title: "Blog da Univali", owner:{name: "José João", credentials: {username: "Univali", password: "123Univali"}}, description: "Blog sobre a vida no campus"},{title: "Blog da Roberta", owner:{name: "Roberta", credentials: {username: "RobertaRL", password: "Sistemas123"}} , description: "Blog sobre Programação"}])
+
+use Univali;
+db.Blogs.insertMany([{title: "Blog da Univali", owner:{name: "José João", username: "Univali", password: "123Univali"}, description: "Blog sobre a vida no campus"},{title: "Blog da Roberta", owner:{name: "Roberta", username: "RobertaRL", password: "Sistemas123"} , description: "Blog sobre Programação"}])
