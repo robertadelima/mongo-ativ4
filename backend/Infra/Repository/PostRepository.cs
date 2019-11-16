@@ -3,12 +3,14 @@ using Ativ4Mongo.backend.Domain;
 using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using Ativ4Mongo.backend.Api.ViewModels;
 
 namespace Ativ4Mongo.backend.Infra.Repository
 {
     public class PostRepository
     {
         IMongoCollection<Post> collection;
+        IMongoCollection<PostsViewModel> collection2;
 
 
         public PostRepository()
@@ -16,20 +18,10 @@ namespace Ativ4Mongo.backend.Infra.Repository
             var client = new MongoClient("mongodb://localhost:27017");
             var database = client.GetDatabase("Univali");
             collection = database.GetCollection<Post>("Posts");
+            collection2 = database.GetCollection<PostsViewModel>("Posts");
         }
          public void Connection(){
-             /*var client = new MongoClient("mongodb://localhost:27017");
-             var database = client.GetDatabase("foo");
-             var collection = database.GetCollection<BsonDocument>("bar");
 
-            collection.InsertOne(new BsonDocument("Name", "Jack"));
-
-            var list = collection.Find(new BsonDocument("Name", "Jack")).ToList();
-
-            foreach(var document in list)   
-            {
-                Console.WriteLine(document["Name"]);    
-            }   */
         }
 
 
@@ -40,9 +32,22 @@ namespace Ativ4Mongo.backend.Infra.Repository
              return docs;
         }
 
-        public void Add(Post post)
+
+        //Provavelmente será trocado para Find por id ou owner.username
+        //Só fiz para testar a estrutura
+        public List<Post> getPostsByTitle(string pTitle){
+            var docs = collection.Find(p => p.title == pTitle).ToList();
+            return docs;
+        }
+
+        public void Remove(string pTitle)
         {
-            collection.InsertOne(post);
+            collection.DeleteOne(post=> post.title == pTitle);
+        }
+
+        public void Add(PostsViewModel post)
+        {
+            collection2.InsertOne(post);
         }
     }
 }

@@ -37,14 +37,27 @@ namespace Ativ4Mongo.backend.Api.Controllers
 
 
         [HttpPost]
-        public IActionResult CreateBlog([FromBody] Post post){
+        [Route("")]
+        public IActionResult CreateBlog([FromBody] PostsViewModel post){
             if(post == null){
                 return BadRequest();
             }
 
             postRepository.Add(post);
             return new NoContentResult();
+        }
 
+
+        [HttpDelete]
+        [Route("{title}")]
+        public IActionResult Delete(string title){
+            var post = postRepository.getPostsByTitle(title);
+
+            if(post == null)
+                return NotFound();
+            
+            postRepository.Remove(title);
+            return new NoContentResult();
         }
 
 
