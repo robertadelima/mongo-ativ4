@@ -8,19 +8,10 @@ namespace Ativ4Mongo.backend.Api.ViewModels
     public class BlogsViewModel
     
     {
-        [BsonId()]
         public ObjectId Id { get; set; }
-
-        [BsonElement("title")]
-        [BsonRequired()]
-        public string Title { get; set; }
-
-        [BsonElement("owner")]
-        [BsonRequired()]   
-        public OwnerViewModel Owner {get; set;}
-
-        [BsonElement("description")]
-        [BsonRequired()]  
+        public string Title { get; set; }        
+        public string Username;
+        public string Password;
         public string Description { get; set; }
 
 

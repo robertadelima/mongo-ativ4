@@ -28,19 +28,13 @@ namespace Ativ4Mongo.backend.Api.Controllers
         [Route("")]
         public IEnumerable<BlogsViewModel> Get()
         {
-            return blogRepository.getBlogs()
+            return blogRepository.GetBlogs()
                 .Select(entidade => new BlogsViewModel() {
                     Id = entidade._id,
                     Title = entidade.title,
-                    Owner = new OwnerViewModel{
-                        name = entidade.owner.name != null ? entidade.owner.name : "",
-                        /*credentials = new CredentialsViewModel{
-                            username = entidade.owner.credentials.username != null ? entidade.owner.credentials.username : "",
-                            password = entidade.owner.credentials.password != null ? entidade.owner.credentials.password : "",
-                        }*/
-                    },
+                    Username = entidade.username,
+                    Password = entidade.password,
                     Description = entidade.description,
-                    
                 } );
         }
 
@@ -50,32 +44,40 @@ namespace Ativ4Mongo.backend.Api.Controllers
         public IEnumerable<BlogsViewModel> GetByTitle(string title)
         {
             //falta considerar caso em que o titulo não existe
-            return blogRepository.getBlogsByTitle(title)
+            return blogRepository.GetBlogsByTitle(title)
                 .Select(entidade => new BlogsViewModel() {
                     Id = entidade._id,
                     Title = entidade.title,
-                    Owner = new OwnerViewModel{
-                        name = entidade.owner.name != null ? entidade.owner.name : "",
-                        /*credentials = new CredentialsViewModel{
-                            username = entidade.owner.credentials.username != null ? entidade.owner.credentials.username : "",
-                            password = entidade.owner.credentials.password != null ? entidade.owner.credentials.password : "",
-                        }*/
-                    },
+                    Username = entidade.username,
+                    Password = entidade.password,
                     Description = entidade.description,
-                    
                 } );
         }  
 
         [HttpPost]
-        public IActionResult CreateBlog([FromBody] BlogsViewModel blog){
-            if(blog == null){
+        public IActionResult CreateBlog([FromBody] NewBlogViewModel blogViewModel){
+            if(blogViewModel == null)
+            {
                 return BadRequest();
             }
 
+            if(blogRepository.UserExists(blogViewModel.username))
+            {
+                return Conflict("User already exists");
+            }
+            Blog blog = new Blog()
+            {
+                username = blogViewModel.username,
+                password = blogViewModel.password,
+                title = blogViewModel.title,
+                description = blogViewModel.description,
+            };
             blogRepository.Add(blog);
-            return new NoContentResult();
+            return new OkResult();
 
         }
+
+        
 
         /*[HttpDelete("{id}")]
         public IActionResult Delete(string title){

@@ -5,11 +5,11 @@ namespace Ativ4Mongo.backend.Domain
 {
     public class Blog : Entity
     {
-        public Owner owner;
+        public string username;
+        public string password;
         public string title;
         public string description;
-        
-        //public Post[] posts;
+        public Post[] posts;
 
     }
 }

@@ -1,3 +1,4 @@
+using System.Linq;
 using System;
 using System.Collections.Generic;
 using Ativ4Mongo.backend.Api.ViewModels;
@@ -9,39 +10,41 @@ namespace Ativ4Mongo.backend.Infra.Repository
 {
     public class BlogRepository
     {
-        IMongoCollection<Blog> collectionBlog;
-        IMongoCollection<BlogsViewModel> collectionBlogViewModel;
+        IMongoDatabase database;
 
 
         public BlogRepository()
         {
             var client = new MongoClient("mongodb://localhost:27017");
-            var database = client.GetDatabase("Univali");
-            collectionBlog = database.GetCollection<Blog>("Blogs");
-            collectionBlogViewModel = database.GetCollection<BlogsViewModel>("Blogs");
-
+            database = client.GetDatabase("Univali");
         }
 
         public void Connection(){
             
         }
 
-        public List<Blog> getBlogs(){
+        public List<Blog> GetBlogs(){
 
-             var docs = collectionBlog.Find(_ => true).ToList();
+             var docs = database.GetCollection<Blog>("Blogs").Find(_ => true).ToList();
 
              return docs;
         }
 
         //Provavelmente será trocado para Find por id ou owner.username
         //Só fiz para testar a estrutura
-        public List<Blog> getBlogsByTitle(string pTitle){
-            var docs = collectionBlog.Find(p => p.title == pTitle).ToList();
+        public List<Blog> GetBlogsByTitle(string pTitle){
+            var docs = database.GetCollection<Blog>("Blogs").Find(p => p.title == pTitle).ToList();
             return docs;
         }
 
-        public void Add(BlogsViewModel blog){
-            collectionBlogViewModel.InsertOne(blog);
+        public bool UserExists(string pUsername){
+            return database.GetCollection<Blog>("Blogs").Find(p => p.username == pUsername).ToList().FirstOrDefault() != null;
+        }
+
+        public void Add(Blog blog){
+
+
+            database.GetCollection<Blog>("Blogs").InsertOne(blog);
         }
 
         

@@ -38,10 +38,11 @@ namespace Ativ4Mongo.backend.Api.Controllers
 
         [HttpPost]
         [Route("")]
-        public IActionResult CreateBlog([FromBody] PostsViewModel post){
+        public IActionResult CreatePost([FromBody] PostsViewModel post){
             if(post == null){
                 return BadRequest();
             }
+            
             post.publishDate = DateTime.Now;
             postRepository.Add(post);
             return new NoContentResult();
