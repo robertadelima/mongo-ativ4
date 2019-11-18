@@ -32,9 +32,8 @@ namespace Ativ4Mongo.backend.Infra.Repository
 
         //Provavelmente será trocado para Find por id ou owner.username
         //Só fiz para testar a estrutura
-        public List<Blog> GetBlogsByTitle(string pTitle){
-            var docs = database.GetCollection<Blog>("Blogs").Find(p => p.title == pTitle).ToList();
-            return docs;
+        public Blog GetBlogByUsername(string username){
+            return database.GetCollection<Blog>("Blogs").Find(p => p.username == username).ToList().FirstOrDefault();
         }
 
         public bool UserExists(string pUsername){
@@ -42,8 +41,6 @@ namespace Ativ4Mongo.backend.Infra.Repository
         }
 
         public void Add(Blog blog){
-
-
             database.GetCollection<Blog>("Blogs").InsertOne(blog);
         }
 

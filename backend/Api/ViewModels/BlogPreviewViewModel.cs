@@ -5,13 +5,11 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Ativ4Mongo.backend.Api.ViewModels
 {
-    public class BlogsViewModel
+    public class BlogPreviewViewModel
     
     {
-        public ObjectId Id { get; set; }
         public string Title { get; set; }        
-        public string Username;
-        public string Password;
+        public string Username { get; set; }
         public string Description { get; set; }
 
 

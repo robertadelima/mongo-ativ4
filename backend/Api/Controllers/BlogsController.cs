@@ -26,32 +26,32 @@ namespace Ativ4Mongo.backend.Api.Controllers
 
         [HttpGet]
         [Route("")]
-        public IEnumerable<BlogsViewModel> Get()
+        public IEnumerable<BlogPreviewViewModel> Get()
         {
             return blogRepository.GetBlogs()
-                .Select(entidade => new BlogsViewModel() {
-                    Id = entidade._id,
+                .Select(entidade => new BlogPreviewViewModel() {
                     Title = entidade.title,
                     Username = entidade.username,
-                    Password = entidade.password,
                     Description = entidade.description,
                 } );
         }
 
         //feito para deixar estrutura pronta
         [HttpGet]
-        [Route("{title}")]
-        public IEnumerable<BlogsViewModel> GetByTitle(string title)
+        [Route("{username}")]
+        public BlogPreviewViewModel GetBlogByUsername(string username)
         {
-            //falta considerar caso em que o titulo não existe
-            return blogRepository.GetBlogsByTitle(title)
-                .Select(entidade => new BlogsViewModel() {
-                    Id = entidade._id,
-                    Title = entidade.title,
-                    Username = entidade.username,
-                    Password = entidade.password,
-                    Description = entidade.description,
-                } );
+            if(!blogRepository.UserExists(username))
+            {
+                return null; //TO DO
+            }
+
+            var blog = blogRepository.GetBlogByUsername(username);
+            return new BlogPreviewViewModel() {
+                    Title = blog.title,
+                    Username = blog.username,
+                    Description = blog.description,
+                };
         }  
 
         [HttpPost]

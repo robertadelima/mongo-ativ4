@@ -9,6 +9,7 @@ namespace Ativ4Mongo.backend.Infra.Repository
 {
     public class PostRepository
     {
+        IMongoDatabase database;
         IMongoCollection<Post> collection;
         IMongoCollection<PostsViewModel> collection2;
 
@@ -16,7 +17,7 @@ namespace Ativ4Mongo.backend.Infra.Repository
         public PostRepository()
         {
             var client = new MongoClient("mongodb://localhost:27017");
-            var database = client.GetDatabase("Univali");
+            database = client.GetDatabase("Univali");
             collection = database.GetCollection<Post>("Posts");
             collection2 = database.GetCollection<PostsViewModel>("Posts");
         }
