@@ -1,25 +1,20 @@
 using System;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
 
 namespace Ativ4Mongo.backend.Domain
 {
     public class Post : Entity
     {
-        public Post(){
+        public string title { get; private set; }
 
-        }
-        public Post(string pTitle, string pFirstContent){
-            title = pTitle;
-            firstContent = pFirstContent;
+        public string firstContent { get; private set; }
+
+        public DateTime publishDate { get; private set; }
+
+        public Post(string title, string firstContent)
+        {
+            this.title = title;
+            this.firstContent = firstContent;
             publishDate = DateTime.Now;
         } 
-
-        public string title;
-
-        public string firstContent;
-
-        public DateTime publishDate;
-
     }
 }

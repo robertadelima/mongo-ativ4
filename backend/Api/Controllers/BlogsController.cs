@@ -61,25 +61,27 @@ namespace Ativ4Mongo.backend.Api.Controllers
 
         [HttpPost]
         public IActionResult CreateBlog([FromBody] NewBlogViewModel blogViewModel){
-            if(blogViewModel == null)
+            if (blogViewModel == null)
             {
                 return BadRequest();
             }
 
-            if(blogRepository.UserExists(blogViewModel.username))
+            if (blogRepository.UserExists(blogViewModel.username))
             {
                 return Conflict("User already exists");
             }
-            Blog blog = new Blog()
-            {
-                username = blogViewModel.username,
-                password = blogViewModel.password,
-                title = blogViewModel.title,
-                description = blogViewModel.description,
-            };
-            blogRepository.Add(blog);
-            return new OkResult();
 
+            var blog = new Blog(
+                blogViewModel.username,
+                blogViewModel.password,
+                blogViewModel.title,
+                blogViewModel.description,
+                posts: null
+            );
+
+            blogRepository.Add(blog);
+
+            return new OkResult();
         }
 
         
