@@ -11,7 +11,7 @@ namespace Ativ4Mongo.backend.Infra.Repository
     {
         IMongoDatabase database;
         IMongoCollection<Post> collection;
-        IMongoCollection<PostsViewModel> collection2;
+        IMongoCollection<PostPreviewViewModel> collection2;
 
 
         public PostRepository()
@@ -19,7 +19,7 @@ namespace Ativ4Mongo.backend.Infra.Repository
             var client = new MongoClient("mongodb://localhost:27017");
             database = client.GetDatabase("Univali");
             collection = database.GetCollection<Post>("Posts");
-            collection2 = database.GetCollection<PostsViewModel>("Posts");
+            collection2 = database.GetCollection<PostPreviewViewModel>("Posts");
         }
          public void Connection(){
 
@@ -46,7 +46,7 @@ namespace Ativ4Mongo.backend.Infra.Repository
             collection.DeleteOne(post=> post.title == pTitle);
         }
 
-        public void Add(PostsViewModel post)
+        public void Add(PostPreviewViewModel post)
         {
             collection2.InsertOne(post);
         }

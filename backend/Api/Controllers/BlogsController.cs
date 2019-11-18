@@ -36,7 +36,7 @@ namespace Ativ4Mongo.backend.Api.Controllers
                 } );
         }
 
-        //feito para deixar estrutura pronta
+        
         [HttpGet]
         [Route("{username}")]
         public IActionResult GetBlogByUsername(string username)
@@ -47,10 +47,15 @@ namespace Ativ4Mongo.backend.Api.Controllers
             }
 
             var blog = blogRepository.GetBlogByUsername(username);
-            return new ObjectResult(new BlogPreviewViewModel() {
+            return new ObjectResult(new BlogDetailsViewModel() {
                     Title = blog.title,
                     Username = blog.username,
                     Description = blog.description,
+                    Posts = blog.posts?.Select(p => new PostPreviewViewModel(){
+                        Title = p.title,
+                        FirstContent = p.firstContent,
+                        PublishDate = p.publishDate,
+                    }).ToList()
                 });
         }  
 

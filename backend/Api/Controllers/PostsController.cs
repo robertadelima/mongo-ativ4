@@ -13,7 +13,7 @@ using Microsoft.Extensions.Logging;
 namespace Ativ4Mongo.backend.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("blogs/")]
     public class PostsController : ControllerBase
     {
         private readonly PostRepository postRepository;
@@ -24,26 +24,24 @@ namespace Ativ4Mongo.backend.Api.Controllers
         } 
 
         [HttpGet]
-        [Route("")]
-        public IEnumerable<PostsViewModel> Get()
+        [Route("{username}/[controller]")]
+        public IEnumerable<PostPreviewViewModel> Get(string username)
         {
+            //TODO 
+            //REFACTOR
             return postRepository.getPosts()
-                .Select(entidade => new PostsViewModel() {
-                    Id = entidade._id,
+                .Select(entidade => new PostPreviewViewModel() {
                     Title = entidade.title,
                     FirstContent = entidade.firstContent,
                 } );
         }
 
-
         [HttpPost]
         [Route("")]
-        public IActionResult CreatePost([FromBody] PostsViewModel post){
+        public IActionResult CreatePost([FromBody] PostPreviewViewModel post){
             if(post == null){
                 return BadRequest();
             }
-            
-            post.publishDate = DateTime.Now;
             postRepository.Add(post);
             return new NoContentResult();
         }

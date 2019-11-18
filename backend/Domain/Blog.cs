@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using MongoDB.Bson;
 
 namespace Ativ4Mongo.backend.Domain
@@ -9,7 +10,7 @@ namespace Ativ4Mongo.backend.Domain
         public string password;
         public string title;
         public string description;
-        public Post[] posts;
+        public List<Post> posts;
 
     }
 }

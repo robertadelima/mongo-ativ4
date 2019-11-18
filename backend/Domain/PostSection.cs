@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using MongoDB.Bson;
 
 namespace Ativ4Mongo.backend.Domain
@@ -8,7 +9,7 @@ namespace Ativ4Mongo.backend.Domain
         public ObjectId postId;
         public string title;
         public string content;
-        public PostSection[] subsections;
+        public List<PostSection> subsections;
 
     }
 }
