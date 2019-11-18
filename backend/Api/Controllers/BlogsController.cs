@@ -39,19 +39,19 @@ namespace Ativ4Mongo.backend.Api.Controllers
         //feito para deixar estrutura pronta
         [HttpGet]
         [Route("{username}")]
-        public BlogPreviewViewModel GetBlogByUsername(string username)
+        public IActionResult GetBlogByUsername(string username)
         {
             if(!blogRepository.UserExists(username))
             {
-                return null; //TO DO
+                return NotFound(); 
             }
 
             var blog = blogRepository.GetBlogByUsername(username);
-            return new BlogPreviewViewModel() {
+            return new ObjectResult(new BlogPreviewViewModel() {
                     Title = blog.title,
                     Username = blog.username,
                     Description = blog.description,
-                };
+                });
         }  
 
         [HttpPost]
