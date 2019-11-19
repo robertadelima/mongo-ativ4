@@ -1,6 +1,5 @@
 using System.Net;
 using System.Net.Http;
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +9,7 @@ using Ativ4Mongo.backend.Domain;
 using Ativ4Mongo.backend.Infra.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Ativ4Mongo.backend.Api.Payloads;
 
 namespace Ativ4Mongo.backend.Api.Controllers
 {
@@ -41,7 +41,7 @@ namespace Ativ4Mongo.backend.Api.Controllers
         [Route("{username}")]
         public IActionResult GetBlogByUsername(string username)
         {
-            if(!blogRepository.UserExists(username))
+            if (!blogRepository.UserExists(username))
             {
                 return NotFound(); 
             }
@@ -60,22 +60,23 @@ namespace Ativ4Mongo.backend.Api.Controllers
         }  
 
         [HttpPost]
-        public IActionResult CreateBlog([FromBody] NewBlogViewModel blogViewModel){
-            if (blogViewModel == null)
+        public IActionResult CreateBlog([FromBody] NewBlogPayload blogPayload)
+        {
+            if (blogPayload == null)
             {
                 return BadRequest();
             }
 
-            if (blogRepository.UserExists(blogViewModel.username))
+            if (blogRepository.UserExists(blogPayload.username))
             {
                 return Conflict("User already exists");
             }
 
             var blog = new Blog(
-                blogViewModel.username,
-                blogViewModel.password,
-                blogViewModel.title,
-                blogViewModel.description,
+                blogPayload.username,
+                blogPayload.password,
+                blogPayload.title,
+                blogPayload.description,
                 posts: null
             );
 
@@ -83,8 +84,6 @@ namespace Ativ4Mongo.backend.Api.Controllers
 
             return new OkResult();
         }
-
-        
 
         /*[HttpDelete("{id}")]
         public IActionResult Delete(string title){
@@ -94,7 +93,5 @@ namespace Ativ4Mongo.backend.Api.Controllers
                 return NotFound();
             }
         }*/
-
-
     }
 }
