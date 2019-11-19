@@ -19,7 +19,4 @@ namespace Ativ4Mongo.backend.Infra.Repository
             Collection = database.GetCollection<T>(collectionName);
         }
     }
-
-        
-    
 }
