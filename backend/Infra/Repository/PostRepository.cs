@@ -7,48 +7,32 @@ using Ativ4Mongo.backend.Api.ViewModels;
 
 namespace Ativ4Mongo.backend.Infra.Repository
 {
-    public class PostRepository
+    public class PostRepository : Repository<Post>
     {
-        IMongoDatabase database;
-        IMongoCollection<Post> collection;
-        IMongoCollection<PostPreviewViewModel> collection2;
+        public PostRepository() : base("Posts") { }
 
-
-        public PostRepository()
+        public List<Post> getPosts()
         {
-            var client = new MongoClient("mongodb://localhost:27017");
-            database = client.GetDatabase("Univali");
-            collection = database.GetCollection<Post>("Posts");
-            collection2 = database.GetCollection<PostPreviewViewModel>("Posts");
-        }
-         public void Connection(){
-
-        }
-
-
-        public List<Post> getPosts(){
-
-             var docs = collection.Find(_ => true).ToList();
-
+             var docs = Collection.Find(_ => true).ToList();
              return docs;
         }
 
-
         //Provavelmente será trocado para Find por id ou owner.username
         //Só fiz para testar a estrutura
-        public List<Post> getPostsByTitle(string pTitle){
-            var docs = collection.Find(p => p.title == pTitle).ToList();
+        public List<Post> getPostsByTitle(string pTitle)
+        {
+            var docs = Collection.Find(p => p.title == pTitle).ToList();
             return docs;
         }
 
         public void Remove(string pTitle)
         {
-            collection.DeleteOne(post=> post.title == pTitle);
+            Collection.DeleteOne(post=> post.title == pTitle);
         }
 
-        public void Add(PostPreviewViewModel post)
+        public void Add(Post post)
         {
-            collection2.InsertOne(post);
+            Collection.InsertOne(post);
         }
     }
 }

@@ -38,11 +38,19 @@ namespace Ativ4Mongo.backend.Api.Controllers
 
         [HttpPost]
         [Route("")]
-        public IActionResult CreatePost([FromBody] PostPreviewViewModel post){
-            if(post == null){
+        public IActionResult CreatePost([FromBody] PostPreviewViewModel postViewModel){
+            
+            if (postViewModel == null)
+            {
                 return BadRequest();
             }
+
+            var post = new Post(
+                postViewModel.Title,
+                postViewModel.FirstContent
+            );
             postRepository.Add(post);
+
             return new NoContentResult();
         }
 
