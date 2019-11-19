@@ -1,14 +1,7 @@
-using System.Net;
-using System.Net.Http;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Ativ4Mongo.backend.Api.ViewModels;
 using Ativ4Mongo.backend.Domain;
 using Ativ4Mongo.backend.Infra.Repository;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace Ativ4Mongo.backend.Api.Controllers
 {

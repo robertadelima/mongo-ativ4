@@ -1,9 +1,6 @@
 using System.Linq;
-using System;
 using System.Collections.Generic;
-using Ativ4Mongo.backend.Api.ViewModels;
 using Ativ4Mongo.backend.Domain;
-using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace Ativ4Mongo.backend.Infra.Repository

@@ -1,6 +1,4 @@
-using System;
 using Ativ4Mongo.backend.Domain;
-using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace Ativ4Mongo.backend.Infra.Repository

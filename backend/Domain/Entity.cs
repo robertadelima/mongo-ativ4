@@ -1,8 +1,4 @@
-using System;
-using Ativ4Mongo.backend.Domain;
 using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Driver;
 
 namespace Ativ4Mongo.backend.Domain
 {

@@ -1,4 +1,3 @@
-
 namespace Ativ4Mongo.backend.Api.Payloads
 {
     public class NewBlogPayload
