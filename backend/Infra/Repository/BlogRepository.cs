@@ -9,20 +9,23 @@ namespace Ativ4Mongo.backend.Infra.Repository
     {
         public BlogRepository() : base("Blogs") { }
 
-        public List<Blog> GetBlogs()
+        public List<Blog> Get()
         {
              var blogs = Collection.Find(_ => true).ToList();
              return blogs;
         }
 
-        public Blog GetBlogByUsername(string username)
+        public Blog GetByUsername(string username)
         {
-            return Collection.Find(p => p.username == username).ToList().FirstOrDefault();
+            return Collection
+                .Find(p => p.username == username)
+                .ToList()
+                .FirstOrDefault();
         }
 
-        public bool UserExists(string pUsername)
+        public bool ExistsByUsername(string username)
         {
-            return Collection.Find(p => p.username == pUsername).ToList().FirstOrDefault() != null;
+            return GetByUsername(username) != null;
         }
 
         public void Add(Blog blog)

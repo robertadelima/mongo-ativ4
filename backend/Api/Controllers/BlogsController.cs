@@ -23,7 +23,7 @@ namespace Ativ4Mongo.backend.Api.Controllers
         [Route("")]
         public IEnumerable<BlogPreviewViewModel> Get()
         {
-            return blogRepository.GetBlogs()
+            return blogRepository.Get()
                 .Select(entidade => new BlogPreviewViewModel() {
                     Title = entidade.title,
                     Username = entidade.username,
@@ -36,12 +36,12 @@ namespace Ativ4Mongo.backend.Api.Controllers
         [Route("{username}")]
         public IActionResult GetBlogByUsername(string username)
         {
-            if (!blogRepository.UserExists(username))
+            if (!blogRepository.ExistsByUsername(username))
             {
                 return NotFound(); 
             }
 
-            var blog = blogRepository.GetBlogByUsername(username);
+            var blog = blogRepository.GetByUsername(username);
             return new ObjectResult(new BlogDetailsViewModel() {
                     Title = blog.title,
                     Username = blog.username,
@@ -62,7 +62,7 @@ namespace Ativ4Mongo.backend.Api.Controllers
                 return BadRequest();
             }
 
-            if (blogRepository.UserExists(blogPayload.username))
+            if (blogRepository.ExistsByUsername(blogPayload.username))
             {
                 return Conflict("User already exists");
             }

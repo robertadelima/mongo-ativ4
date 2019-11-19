@@ -54,7 +54,7 @@ namespace Ativ4Mongo.backend.Api.Controllers
         [Route("{title}")]
         public IActionResult Delete(string title)
         {
-            var post = postRepository.getPostsByTitle(title);
+            var post = postRepository.GetByTitle(title);
             if (post == null)
             {
                 return NotFound();

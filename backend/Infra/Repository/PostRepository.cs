@@ -8,23 +8,15 @@ namespace Ativ4Mongo.backend.Infra.Repository
     {
         public PostRepository() : base("Posts") { }
 
-        public List<Post> getPosts()
+        public List<Post> GetByTitle(string title)
         {
-             var docs = Collection.Find(_ => true).ToList();
-             return docs;
-        }
-
-        //Provavelmente será trocado para Find por id ou owner.username
-        //Só fiz para testar a estrutura
-        public List<Post> getPostsByTitle(string pTitle)
-        {
-            var docs = Collection.Find(p => p.title == pTitle).ToList();
+            var docs = Collection.Find(post => post.title == title).ToList();
             return docs;
         }
 
-        public void Remove(string pTitle)
+        public void Remove(string title)
         {
-            Collection.DeleteOne(post=> post.title == pTitle);
+            Collection.DeleteOne(post => post.title == title);
         }
 
         public void Add(Post post)
