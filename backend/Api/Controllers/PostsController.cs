@@ -16,21 +16,6 @@ namespace Ativ4Mongo.backend.Api.Controllers
             this.postRepository = postRepository;
         }
 
-        /* // Isto esta dando conflito com o endpoint de BlogsController.GetByUserName
-        [HttpGet]
-        [Route("")]
-        public IEnumerable<PostPreviewViewModel> GeyByUsername(string username)
-        {
-            //TODO 
-            //REFACTOR
-            return postRepository.getPosts()
-                .Select(entidade => new PostPreviewViewModel() {
-                    Title = entidade.title,
-                    FirstContent = entidade.firstContent,
-                } );
-        }
-        */
-
         [HttpPost]
         [Route("")]
         public IActionResult CreatePost([FromBody] PostPreviewViewModel postViewModel)

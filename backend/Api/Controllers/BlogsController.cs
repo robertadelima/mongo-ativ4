@@ -21,7 +21,7 @@ namespace Ativ4Mongo.backend.Api.Controllers
 
         [HttpGet]
         [Route("")]
-        public IEnumerable<BlogPreviewViewModel> Get()
+        public IEnumerable<BlogPreviewViewModel> GetBlogs()
         {
             return blogRepository.Get()
                 .Select(entidade => new BlogPreviewViewModel() {
