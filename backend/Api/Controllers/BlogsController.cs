@@ -56,7 +56,7 @@ namespace Ativ4Mongo.backend.Api.Controllers
         [HttpPost]
         public IActionResult CreateBlog([FromBody] NewBlogPayload blogPayload)
         {
-            if (blogPayload == null)
+            if (blogPayload?.username == null)
             {
                 return BadRequest();
             }
