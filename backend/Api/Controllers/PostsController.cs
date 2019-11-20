@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Ativ4Mongo.backend.Api.Controllers
 {
     [ApiController]
-    [Route("Blogs/{username}")]
+    [Route("blogs/{username}")]
     public class PostsController : ControllerBase
     {
         private readonly PostRepository postRepository;
