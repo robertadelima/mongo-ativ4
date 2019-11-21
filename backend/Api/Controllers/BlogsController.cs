@@ -79,13 +79,19 @@ namespace Ativ4Mongo.backend.Api.Controllers
             return new OkResult();
         }
 
-        /*[HttpDelete("{id}")]
-        public IActionResult Delete(string title){
-            var blog = blogRepository.getBlogsByTitle(title);
-
-            if(blog == null){
-                return NotFound();
+        [HttpDelete]
+        [Route("{username}")]
+        public IActionResult Delete(string username)
+        {
+            var deleted = blogRepository.DeleteByUsername(username);
+            if (deleted)
+            {
+                return Ok();
             }
-        }*/
+            else
+            {
+                return NoContent();
+            }
+        }
     }
 }

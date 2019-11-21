@@ -32,5 +32,11 @@ namespace Ativ4Mongo.backend.Infra.Repository
         {
            Collection.InsertOne(blog);
         }
+
+        public bool DeleteByUsername(string username)
+        {
+            var result = Collection.DeleteOne(blog => blog.Username.Equals(username));
+            return result.IsAcknowledged && result.DeletedCount > 0;
+        }
     }
 }
