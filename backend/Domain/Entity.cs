@@ -1,9 +1,13 @@
+
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace Ativ4Mongo.backend.Domain
 {
     public abstract class Entity 
     {
-        public ObjectId _id { get; private set; }  
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)] 
+        public string Id { get; private set; }  
     }
 }

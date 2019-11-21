@@ -25,9 +25,9 @@ namespace Ativ4Mongo.backend.Api.Controllers
         {
             return blogRepository.Get()
                 .Select(entidade => new BlogPreviewViewModel() {
-                    Title = entidade.title,
-                    Username = entidade.username,
-                    Description = entidade.description,
+                    Title = entidade.Title,
+                    Username = entidade.Username,
+                    Description = entidade.Description,
                 } );
         }
         
@@ -42,13 +42,13 @@ namespace Ativ4Mongo.backend.Api.Controllers
 
             var blog = blogRepository.GetByUsername(username);
             return new ObjectResult(new BlogDetailsViewModel() {
-                Title = blog.title,
-                Username = blog.username,
-                Description = blog.description,
-                Posts = blog.posts?.Select(p => new PostPreviewViewModel(){
-                    Title = p.title,
-                    FirstContent = p.firstContent,
-                    PublishDate = p.publishDate,
+                Title = blog.Title,
+                Username = blog.Username,
+                Description = blog.Description,
+                Posts = blog.Posts?.Select(p => new PostPreviewViewModel(){
+                    Title = p.Title,
+                    FirstContent = p.FirstContent,
+                    PublishDate = p.PublishDate,
                 }).ToList()
             });
         }  

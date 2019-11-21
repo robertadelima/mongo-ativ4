@@ -18,7 +18,7 @@ namespace Ativ4Mongo.backend.Infra.Repository
         public Blog GetByUsername(string username)
         {
             return Collection
-                .Find(p => p.username == username)
+                .Find(p => p.Username == username)
                 .ToList()
                 .FirstOrDefault();
         }
