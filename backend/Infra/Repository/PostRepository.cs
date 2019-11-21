@@ -10,11 +10,11 @@ namespace Ativ4Mongo.backend.Infra.Repository
 
         public List<Post> GetByTitle(string title)
         {
-            var docs = Collection.Find(post => post.Title == title).ToList();
-            return docs;
+            var posts = Collection.Find(post => post.Title == title).ToList();
+            return posts;
         }
 
-        public void Remove(string title)
+        public void RemoveByTitle(string title)
         {
             Collection.DeleteOne(post => post.Title == title);
         }

@@ -1,7 +1,11 @@
+using Ativ4Mongo.backend.Api.Payloads;
 using Ativ4Mongo.backend.Api.ViewModels;
 using Ativ4Mongo.backend.Domain;
 using Ativ4Mongo.backend.Infra.Repository;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Ativ4Mongo.backend.Api.Controllers
 {
@@ -16,22 +20,25 @@ namespace Ativ4Mongo.backend.Api.Controllers
             this.postRepository = postRepository;
         }
 
+        private List<PostSection> GetSectionsFromPayload(NewPostPayload postPayload)
+        {
+            return null; // TODO: map newPostPayload sections to domain
+        }
+
         [HttpPost]
         [Route("")]
-        public IActionResult CreatePost([FromBody] PostPreviewViewModel postViewModel)
+        public IActionResult CreatePost([FromBody] NewPostPayload postPayload)
         {
-            if (postViewModel == null)
+            if (postPayload == null)
             {
                 return BadRequest();
             }
-
-            var post = new Post(
-                postViewModel.Title,
-                postViewModel.FirstContent
-            );
+            
+            var postSections = GetSectionsFromPayload(postPayload);
+            var post = new Post(postPayload.Title, postPayload.Content, postSections);
             postRepository.Add(post);
 
-            return new NoContentResult();
+            return Ok();
         }
 
         [HttpDelete]
@@ -44,7 +51,7 @@ namespace Ativ4Mongo.backend.Api.Controllers
                 return NotFound();
             }
             
-            postRepository.Remove(title);
+            postRepository.RemoveByTitle(title);
 
             return new NoContentResult();
         }
