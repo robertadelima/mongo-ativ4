@@ -27,9 +27,12 @@ namespace Ativ4Mongo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddMvc().AddJsonOptions(options => {
+                options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+            });
+
             services.AddTransient<BlogRepository>();
             services.AddTransient<PostRepository>();
-    
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

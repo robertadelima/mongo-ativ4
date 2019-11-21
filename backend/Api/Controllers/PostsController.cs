@@ -34,7 +34,6 @@ namespace Ativ4Mongo.backend.Api.Controllers
             return new NoContentResult();
         }
 
-
         [HttpDelete]
         [Route("{title}")]
         public IActionResult Delete(string title)

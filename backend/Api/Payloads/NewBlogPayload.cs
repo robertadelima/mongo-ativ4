@@ -2,10 +2,10 @@ namespace Ativ4Mongo.backend.Api.Payloads
 {
     public class NewBlogPayload
     {
-        public string title { get; set; }
-        public string description { get; set; }
-        public string username { get; set; }
-        public string password { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
 
     }
 }

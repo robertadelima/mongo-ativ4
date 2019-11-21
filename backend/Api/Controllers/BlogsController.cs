@@ -56,21 +56,21 @@ namespace Ativ4Mongo.backend.Api.Controllers
         [HttpPost]
         public IActionResult CreateBlog([FromBody] NewBlogPayload blogPayload)
         {
-            if (blogPayload?.username == null)
+            if (blogPayload?.Username == null)
             {
                 return BadRequest();
             }
 
-            if (blogRepository.ExistsByUsername(blogPayload.username))
+            if (blogRepository.ExistsByUsername(blogPayload.Username))
             {
                 return Conflict("The provided username is already being used");
             }
 
             var blog = new Blog(
-                blogPayload.username,
-                blogPayload.password,
-                blogPayload.title,
-                blogPayload.description,
+                blogPayload.Username,
+                blogPayload.Password,
+                blogPayload.Title,
+                blogPayload.Description,
                 posts: null
             );
 
