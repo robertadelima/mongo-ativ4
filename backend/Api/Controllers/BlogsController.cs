@@ -63,7 +63,7 @@ namespace Ativ4Mongo.backend.Api.Controllers
 
             if (blogRepository.ExistsByUsername(blogPayload.username))
             {
-                return Conflict("User already exists");
+                return Conflict("The provided username is already being used");
             }
 
             var blog = new Blog(
