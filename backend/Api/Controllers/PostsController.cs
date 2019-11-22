@@ -20,22 +20,35 @@ namespace Ativ4Mongo.backend.Api.Controllers
             this.postRepository = postRepository;
         }
 
-        private List<PostSection> GetSectionsFromPayload(NewPostPayload postPayload)
+        private List<PostSection> MapSectionsPayloadToEntities(
+            List<PostSectionPayload> postSectionsPayload,
+            Post post
+        )
         {
-            return null; // TODO: map newPostPayload sections to domain
+            return postSectionsPayload?.Select(sectionPayload => 
+                new PostSection(
+                    post,
+                    sectionPayload.Title,
+                    sectionPayload.Content,
+                    MapSectionsPayloadToEntities(sectionPayload.Subsections, post)
+                )
+            ).ToList();
         }
 
         [HttpPost]
         [Route("")]
-        public IActionResult CreatePost([FromBody] NewPostPayload postPayload)
+        public IActionResult CreatePost([FromBody] PostSectionPayload postPayload)
         {
             if (postPayload == null)
             {
                 return BadRequest();
             }
             
-            var postSections = GetSectionsFromPayload(postPayload);
-            var post = new Post(postPayload.Title, postPayload.Content, postSections);
+            var post = new Post(postPayload.Title, postPayload.Content);
+            var postSections = MapSectionsPayloadToEntities(postPayload.Subsections, post);
+            
+            post.Sections.AddRange(postSections);
+            
             postRepository.Add(post);
 
             return Ok();
