@@ -16,14 +16,11 @@ namespace Ativ4Mongo.backend.Domain
         [BsonElement("publishDate")]
         public DateTime PublishDate { get; private set; }
 
-        public List<PostSection> Sections { get; private set; }
-        
-        public Post(string title, string firstContent, List<PostSection> sections = null) 
+        public Post(string title, string firstContent)
         {
             this.Title = title;
             this.FirstContent = firstContent;
             PublishDate = DateTime.Now;
-            Sections = sections ?? new List<PostSection>();
         }
     }
 }

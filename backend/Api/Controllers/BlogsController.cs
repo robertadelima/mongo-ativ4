@@ -45,10 +45,10 @@ namespace Ativ4Mongo.backend.Api.Controllers
                 Title = blog.Title,
                 Username = blog.Username,
                 Description = blog.Description,
-                Posts = blog.Posts?.Select(p => new PostPreviewViewModel(){
-                    Title = p.Title,
-                    FirstContent = p.FirstContent,
-                    PublishDate = p.PublishDate,
+                Posts = blog.Posts?.Select(post => new PostPreviewViewModel(){
+                    Title = post.Title,
+                    FirstContent = post.FirstContent,
+                    PublishDate = post.PublishDate,
                 }).ToList()
             });
         }  

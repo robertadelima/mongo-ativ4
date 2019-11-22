@@ -8,7 +8,7 @@ namespace Ativ4Mongo.backend.Domain
     public class PostSection : Entity
     {
         [BsonRepresentation(BsonType.ObjectId)] 
-        public string postId { get; private set; }
+        public string PostId { get; private set; }
         
         [BsonIgnore]
         public Post Post { get; private set; }
@@ -26,6 +26,7 @@ namespace Ativ4Mongo.backend.Domain
             Post post, string title, string content, List<PostSection> subsections)
         {
             Post = post;
+            PostId = post?.Id;
             Title = title;
             Content = content;
             Subsections = subsections;

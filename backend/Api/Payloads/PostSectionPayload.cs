@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace Ativ4Mongo.backend.Api.Payloads
 {
-    public class PostSectionPayload
+    public class NewPostPayload
     {
         public string Title { get; set; }
         public string Content { get; set; }
-        public List<PostSectionPayload> Subsections { get; set; }
+        public List<NewPostPayload> Subsections { get; set; }
     }
 }

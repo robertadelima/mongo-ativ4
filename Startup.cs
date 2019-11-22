@@ -32,7 +32,7 @@ namespace Ativ4Mongo
             });
 
             services.AddTransient<BlogRepository>();
-            services.AddTransient<PostRepository>();
+            services.AddTransient<PostSectionRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

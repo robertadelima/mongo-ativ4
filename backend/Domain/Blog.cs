@@ -26,7 +26,7 @@ namespace Ativ4Mongo.backend.Domain
             Password = password;
             Title = title;
             Description = description;
-            Posts = posts;
+            Posts = posts ?? new List<Post>();
         }
     }
 }
