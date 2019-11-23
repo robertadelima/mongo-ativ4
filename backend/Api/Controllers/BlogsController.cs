@@ -5,6 +5,7 @@ using Ativ4Mongo.backend.Api.Payloads;
 using Ativ4Mongo.backend.Domain;
 using Ativ4Mongo.backend.Infra.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Cors;
 
 namespace Ativ4Mongo.backend.Api.Controllers
 {
@@ -19,6 +20,7 @@ namespace Ativ4Mongo.backend.Api.Controllers
             this.blogRepository = blogRepository;
         }
 
+        [EnableCors]
         [HttpGet]
         [Route("")]
         public IEnumerable<BlogPreviewViewModel> GetBlogs()
