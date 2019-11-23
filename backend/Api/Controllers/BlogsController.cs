@@ -51,7 +51,8 @@ namespace Ativ4Mongo.backend.Api.Controllers
                     Title = post.Title,
                     FirstContent = post.FirstContent,
                     PublishDate = post.PublishDate,
-                }).ToList()
+                }).Reverse()
+                .ToList()
             });
         }  
 
