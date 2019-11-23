@@ -1,68 +1,31 @@
-# WIP Readme
+# MongoDB Project Blogs
 
-## Get all blogs
+This a project me and @mabo3n made for a NoSQL Database class. A backend for a blog management system is provided which uses MongoDB and exposes a RESTFul API to create and retrieve blog and blog posts.
 
-That's the main feed.
+The documentation for the API can be accessed through the `/swagger` endpoint:
 
-Definition: `GET /blogs`
+`GET​ /blogs`
 
-Payload: ` `
+Returns a collection of registered blogs sorted by their last post's publish date
 
-Responses:
+`POST ​/blogs`
 
-Success: `200 OK`
-```json
-{
-  [
-    {
-      "title": "The blog title",
-      "username": "The blog owner",
-      "description": "The description of the blog",
-    },
-    {
-      "title": "The blog title",
-      "username": "The blog owner",
-      "description": "The description of the blog",
-    }
-  ]
-}
-```
+Creates a new blog account
 
-## Create blog
+`GET​ /blogs​/{owner}`
 
-Definition: `POST /blogs`
+Returns the blog's posts sorted by publish date
 
-Payload:
-```json
-{
-  "title": "The blog title",
-  "username": "The blog owner's username",
-  "password": "The blog owner's password",
-  "description": "The description of the blog",
-},
-```
+`DELETE ​/blogs​/{owner}`
 
-Response:
+Deletes a blog account
 
-Success: `200 OK`
+`POST​ /blogs​/{owner}`
 
-Failure:
+Creates a new post in a blog
 
-Username already being used: `401 CONFLICT`
+`GET​ /blogs​/{owner}​/{position}`
+
+Returns sections for a given post position
 
 
-**POST**
-
-### `blogs/{username}
-
-**GET**
-
-**DELETE**
-
-### `blogs/{username}
-
-**GET**
-
-**POST**
-
-**DELETE**
