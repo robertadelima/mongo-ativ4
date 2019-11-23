@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using Ativ4Mongo.backend.Domain;
@@ -11,8 +12,14 @@ namespace Ativ4Mongo.backend.Infra.Repository
 
         public List<Blog> Get()
         {
-             var blogs = Collection.Find(_ => true).ToList();
-             return blogs;
+             var blogs = Collection
+                .Find(_ => true)
+                .ToList()
+                .OrderByDescending(
+                    blog => blog.Posts?.LastOrDefault()?.PublishDate ?? DateTime.MinValue
+                );
+
+             return blogs.ToList();
         }
 
         public Blog GetByOwner(string owner)

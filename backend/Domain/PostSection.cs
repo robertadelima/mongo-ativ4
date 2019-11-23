@@ -7,11 +7,12 @@ namespace Ativ4Mongo.backend.Domain
 {
     public class PostSection : Entity
     {
-        [BsonRepresentation(BsonType.ObjectId)] 
-        public string PostId { get; private set; }
-        
         [BsonIgnore]
         public Post Post { get; private set; }
+
+        [BsonRepresentation(BsonType.ObjectId)]
+        [BsonElement("postId")]
+        public string PostId { get; private set; }
 
         [BsonElement("title")]
         public string Title { get; private set; }
