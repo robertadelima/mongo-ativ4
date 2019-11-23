@@ -14,10 +14,12 @@ namespace Ativ4Mongo.backend.Api.Controllers
     public class BlogsController : ControllerBase
     {
         private readonly BlogRepository blogRepository;
+        private readonly PostSectionRepository postSectionRepository;
 
-        public BlogsController(BlogRepository blogRepository)
+        public BlogsController(BlogRepository blogRepository, PostSectionRepository postSectionRepository)
         {
             this.blogRepository = blogRepository;
+            this.postSectionRepository = postSectionRepository;
         }
 
         /// <summary>
@@ -104,6 +106,16 @@ namespace Ativ4Mongo.backend.Api.Controllers
         [Route("{owner}")]
         public IActionResult Delete(string owner)
         {
+            var blog = blogRepository.GetByOwner(owner);
+            if(blog == null)
+            {
+                return NoContent();
+            }
+            foreach (var post in blog.Posts)
+            {
+                postSectionRepository.DeleteByPostId(post.Id);
+            }
+
             var deleted = blogRepository.DeleteByOwner(owner);
             if (deleted)
             {

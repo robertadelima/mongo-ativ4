@@ -65,6 +65,10 @@ namespace Ativ4Mongo.backend.Api.Controllers
             {
                 return BadRequest();
             }
+            if (!blogRepository.ExistsByOwner(owner))
+            {
+                return NotFound("Blog does not exist"); 
+            }
             
             var post = new Post(postPayload.Title, postPayload.Content);
             blogRepository.AddPostToBlogByOwner(owner, post);
@@ -89,7 +93,7 @@ namespace Ativ4Mongo.backend.Api.Controllers
 
             if (blog == null)
             {
-                return NotFound("Owner does not exist."); 
+                return NotFound("Blog does not exist."); 
             }
 
             if(blog.Posts.Count < position)

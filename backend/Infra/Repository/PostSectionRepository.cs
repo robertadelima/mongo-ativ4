@@ -24,5 +24,11 @@ namespace Ativ4Mongo.backend.Infra.Repository
         {
             Collection.InsertMany(sections);
         }
+
+        public bool DeleteByPostId(string postId)
+        {
+            var result = Collection.DeleteMany(postSection => postSection.PostId == postId);
+            return result.IsAcknowledged && result.DeletedCount > 0;
+        }
     }
 }
