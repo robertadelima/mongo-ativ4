@@ -1,0 +1,143 @@
+db.Blogs.insertMany([
+{
+	"title" : "Blog da Univali",
+	"description": "Blog sobre a vida no campus",
+	"owner" : "univali",
+	"password" : "campus1234",
+	"posts": [
+		{
+			"title": "Primeiro post da Univali",
+			"firstContent": "Esse é o resumo do post.",
+			"publishDate": new Date("2019-01-20"),
+		},
+		{
+			"title": "Segundo post da Univali",
+			"firstContent": "Esse é o resumo do post.",
+			"publishDate": new Date("2019-03-22"),
+		},
+		{
+			"title": "Terceiro post da Univali",
+			"firstContent": "Esse é o resumo do post.",
+			"publishDate": new Date("2019-05-17"),
+		}
+	]
+},
+{
+	"title" : "Blog de Big Data",
+	"description": "Blog sobre big data",
+	"owner" : "bigdata",
+	"password" : "12345",
+	"posts": [
+		{
+			"title": "Primeiro post da Univali",
+			"firstContent": "Esse é o resumo do post.",
+			"publishDate": new Date("2019-01-20"),
+		},
+		{
+			"title": "Segundo post da Univali",
+			"firstContent": "Esse é o resumo do post.",
+			"publishDate": new Date("2019-03-22"),
+		},
+	]
+},
+{
+	"title" : "Blog Sem Posts :(",
+	"description": "Esse blogs não possui posts.",
+	"owner" : "postless",
+	"password" : "159159",
+	"posts": []
+},
+{
+	"title" : "Blog de Viagens",
+	"description": "Viajar é libertador",
+	"owner" : "viajeomundo",
+	"password" : "www123",
+	"posts": [
+		{
+			"title": "Primeiro post do Viaje o Mundo",
+			"firstContent": "Esse é o resumo do post.",
+			"publishDate": new Date("2019-08-21"),
+		},
+		{
+			"title": "Segundo post da Viaje o Mundo",
+			"firstContent": "Esse é o resumo do post.",
+			"publishDate": new Date("2019-10-24"),
+		},
+	]
+},
+{
+	"title" : "Blog de Dogs",
+	"description": "Para dog lovers",
+	"owner" : "petshop",
+	"password" : "zeedog123",
+	"posts": [
+		{
+			"title": "Primeiro post do Dogs",
+			"firstContent": "Esse é o resumo do post.",
+			"publishDate": new Date("2019-09-10"),
+		},
+		{
+			"title": "Segundo post da Dogs",
+			"firstContent": "Esse é o resumo do post.",
+			"publishDate": new Date("2019-11-06"),
+		},
+	]
+}
+])
+
+
+
+
+
+
+
+
+{
+	"title" : "Blog da Univali",
+	"description": "Blog sobre a vida no campus",
+	"owner" : "univali",
+	"password" : "campus1234",
+	
+	"posts": [
+		{
+			"title": "Primeiro post da Univali",
+			"firstContent": "Esse é o resumo do post.",
+			"publishDate": new Date("2019-01-20"),
+		},
+		{
+			"title": "Segundo post da Univali",
+			"firstContent": "Esse é o resumo do post.",
+			"publishDate": new Date("2019-03-22"),
+		},
+		{
+			"title": "Terceiro post da Univali",
+			"firstContent": "Esse é o resumo do post.",
+			"publishDate": new Date("2019-05-17"),
+		}
+	]
+},
+{
+	"title" : "Blog de Big Data",
+	"owner" : "bigdata",
+	"password" : "12345",
+	"description": "Blog sobre big data"
+},
+{
+	"title" : "Blog do Marcel",
+	"owner" : "marcel",
+	"password" : "98765",
+	"description": "Blog do Marcel"
+},
+{
+	"title" : "Blog da Roberta",
+	"owner" : "roberta",
+	"password" : "112233",
+	"description": "Blog sobre a vida da Roberta"
+},
+{
+	"title" : "Blog do Rafael",
+	"owner" : "rafael",
+	"password" : "rafael123",
+	"description": "Blog do Rafael"
+}
+])

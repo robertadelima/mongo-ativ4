@@ -20,7 +20,10 @@ namespace Ativ4Mongo.backend.Api.Controllers
             this.blogRepository = blogRepository;
         }
 
-        
+        /// <summary>
+        /// Returns a collection of registered blogs sorted by their last post's publish date
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("")]
         public IEnumerable<BlogPreviewViewModel> GetBlogs()
@@ -33,7 +36,7 @@ namespace Ativ4Mongo.backend.Api.Controllers
                 } );
         }
         /// <summary>
-        /// Returns a collection of registered blogs sorted by their last post's publish date
+        /// Returns a blog's posts sorted by publish date
         /// </summary>
         /// <param name="owner"> Blog's Owner</param>
         /// <returns></returns>
@@ -60,6 +63,11 @@ namespace Ativ4Mongo.backend.Api.Controllers
             });
         }  
 
+        /// <summary>
+        /// Creates a new blog account
+        /// </summary>
+        /// <param name="blogPayload"></param>
+        /// <returns></returns>
         [HttpPost]  
         [Route("")]
         public IActionResult CreateBlog([FromBody] NewBlogPayload blogPayload)
@@ -87,6 +95,11 @@ namespace Ativ4Mongo.backend.Api.Controllers
             return new OkResult();
         }
 
+        /// <summary>
+        /// Deletes a blog account
+        /// </summary>
+        /// <param name="owner"> Blog's Owner </param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("{owner}")]
         public IActionResult Delete(string owner)

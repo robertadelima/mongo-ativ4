@@ -37,6 +37,12 @@ namespace Ativ4Mongo.backend.Api.Controllers
             ).ToList();
         }
 
+        /// <summary>
+        /// Creates a new post in a blog
+        /// </summary>
+        /// <param name="owner"></param>
+        /// <param name="postPayload"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("")]
         public IActionResult CreatePost(string owner, [FromBody] NewPostPayload postPayload)
@@ -54,5 +60,18 @@ namespace Ativ4Mongo.backend.Api.Controllers
 
             return Ok();
         }
+
+        //TODO
+        /* [HttpGet]
+        [Route("{owner}/post/{posttitle}")]
+        public IActionResult GetSubsectionsByPost(string owner, string posttitle){
+            if (!blogRepository.ExistsByOwner(owner))
+            {
+                return NotFound(); 
+            }
+
+
+        }*/
+
     }
 }
