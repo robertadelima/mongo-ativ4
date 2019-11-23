@@ -37,6 +37,20 @@ namespace Ativ4Mongo.backend.Api.Controllers
             ).ToList();
         }
 
+        private List<PostSectionViewModel> MapSectionsEntitiesToViewModel(
+            List<PostSection> postSections
+        )
+        {
+            return postSections?.Select(postSection => 
+                new PostSectionViewModel()
+                {
+                    Title = postSection.Title,
+                    Content = postSection.Content,
+                    Subsections = MapSectionsEntitiesToViewModel(postSection.Subsections)
+                }
+            ).ToList();
+        }
+
         /// <summary>
         /// Creates a new post in a blog
         /// </summary>
@@ -61,17 +75,41 @@ namespace Ativ4Mongo.backend.Api.Controllers
             return Ok();
         }
 
-        //TODO
-        /* [HttpGet]
-        [Route("{owner}/post/{posttitle}")]
-        public IActionResult GetSubsectionsByPost(string owner, string posttitle){
-            if (!blogRepository.ExistsByOwner(owner))
+        /// <summary>
+        /// Returns sections for a given post position
+        /// </summary>
+        /// <param name="owner"></param>
+        /// <param name="position"></param>
+        /// <returns> Post sections </returns>
+        [HttpGet]
+        [Route("{position}")]
+        public IActionResult GetSubsectionsByPost(string owner, int position)
+        {
+            var blog = blogRepository.GetByOwner(owner);
+
+            if (blog == null)
             {
-                return NotFound(); 
+                return NotFound("Owner does not exist."); 
             }
 
+            if(blog.Posts.Count < position)
+            {
+                return NotFound("Post not found.");
+            }
 
-        }*/
+            var postId = blog.Posts[blog.Posts.Count - position].Id;
+
+            var postSections = postSectionRepository.GetByPostId(postId);
+
+                    
+            return new ObjectResult( postSections.Select(postSection => new PostSectionViewModel()
+            {
+                Title = postSection.Title,
+                Content = postSection.Content,
+                Subsections = MapSectionsEntitiesToViewModel(postSection.Subsections)
+            }).ToList()
+            );
+        }
 
     }
 }

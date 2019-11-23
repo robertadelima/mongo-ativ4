@@ -29,12 +29,12 @@ db.Blogs.insertMany([
 	"password" : "12345",
 	"posts": [
 		{
-			"title": "Primeiro post da Univali",
+			"title": "Primeiro post de Big Data",
 			"firstContent": "Esse é o resumo do post.",
 			"publishDate": new Date("2019-01-20"),
 		},
 		{
-			"title": "Segundo post da Univali",
+			"title": "Segundo post de Big Data",
 			"firstContent": "Esse é o resumo do post.",
 			"publishDate": new Date("2019-03-22"),
 		},
@@ -49,7 +49,7 @@ db.Blogs.insertMany([
 },
 {
 	"title" : "Blog de Viagens",
-	"description": "Viajar é libertador",
+	"description": "Viaje o mundo",
 	"owner" : "viajeomundo",
 	"password" : "www123",
 	"posts": [
@@ -91,53 +91,3 @@ db.Blogs.insertMany([
 
 
 
-
-{
-	"title" : "Blog da Univali",
-	"description": "Blog sobre a vida no campus",
-	"owner" : "univali",
-	"password" : "campus1234",
-	
-	"posts": [
-		{
-			"title": "Primeiro post da Univali",
-			"firstContent": "Esse é o resumo do post.",
-			"publishDate": new Date("2019-01-20"),
-		},
-		{
-			"title": "Segundo post da Univali",
-			"firstContent": "Esse é o resumo do post.",
-			"publishDate": new Date("2019-03-22"),
-		},
-		{
-			"title": "Terceiro post da Univali",
-			"firstContent": "Esse é o resumo do post.",
-			"publishDate": new Date("2019-05-17"),
-		}
-	]
-},
-{
-	"title" : "Blog de Big Data",
-	"owner" : "bigdata",
-	"password" : "12345",
-	"description": "Blog sobre big data"
-},
-{
-	"title" : "Blog do Marcel",
-	"owner" : "marcel",
-	"password" : "98765",
-	"description": "Blog do Marcel"
-},
-{
-	"title" : "Blog da Roberta",
-	"owner" : "roberta",
-	"password" : "112233",
-	"description": "Blog sobre a vida da Roberta"
-},
-{
-	"title" : "Blog do Rafael",
-	"owner" : "rafael",
-	"password" : "rafael123",
-	"description": "Blog do Rafael"
-}
-])

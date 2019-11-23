@@ -1,6 +1,7 @@
 using Ativ4Mongo.backend.Domain;
 using System.Collections.Generic;
 using MongoDB.Driver;
+using System.Linq;
 
 namespace Ativ4Mongo.backend.Infra.Repository
 {
@@ -8,14 +9,14 @@ namespace Ativ4Mongo.backend.Infra.Repository
     {
         public PostSectionRepository() : base("PostSections") { }
 
-        public List<PostSection> GetByPost(Post post)
+        public List<PostSection> GetByPostId(string postId)
         {
-            if (post == null)
+            if (postId == null)
             {
                 return new List<PostSection>();
             }
 
-            var posts = Collection.Find(section => post.Equals(section.Post));
+            var posts = Collection.Find(section => string.Equals(postId, section.PostId));
             return posts.ToList();
         }
 

@@ -36,7 +36,7 @@ namespace Ativ4Mongo.backend.Api.Controllers
                 } );
         }
         /// <summary>
-        /// Returns a blog's posts sorted by publish date
+        /// Returns the blog's posts sorted by publish date
         /// </summary>
         /// <param name="owner"> Blog's Owner</param>
         /// <returns></returns>
