@@ -10,7 +10,7 @@ using System.Linq;
 namespace Ativ4Mongo.backend.Api.Controllers
 {
     [ApiController]
-    [Route("blogs/{username}")]
+    [Route("blogs/{owner}")]
     public class PostsController : ControllerBase
     {
         private readonly PostSectionRepository postSectionRepository;
@@ -39,15 +39,15 @@ namespace Ativ4Mongo.backend.Api.Controllers
 
         [HttpPost]
         [Route("")]
-        public IActionResult CreatePost(string username, [FromBody] NewPostPayload postPayload)
+        public IActionResult CreatePost(string owner, [FromBody] NewPostPayload postPayload)
         {
-            if (string.IsNullOrEmpty(username) || postPayload == null)
+            if (string.IsNullOrEmpty(owner) || postPayload == null)
             {
                 return BadRequest();
             }
             
             var post = new Post(postPayload.Title, postPayload.Content);
-            blogRepository.AddPostToBlogByUsername(username, post);
+            blogRepository.AddPostToBlogByOwner(owner, post);
 
             var postSections = MapSectionsPayloadToEntities(postPayload.Subsections, post);
             postSectionRepository.Add(postSections);

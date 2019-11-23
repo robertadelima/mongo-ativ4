@@ -12,14 +12,10 @@ Feed precisa de 1 ordenação.
 ```js
 {
     _id: <ObjectId>,
-    owner: {
-        name: string,
-        credentials: {
-            username: string,
-            password: string
-        }
-    },
+    title: string,
     description: string,
+    owner: string,
+    password: string,
     posts: [
         {
             _id: <ObjectId>,
@@ -42,7 +38,7 @@ Feed precisa de 1 ordenação.
 {
     _id: <ObjectId>,
     postId: <ObjectId>,
-    title
+    title: string,
     content: string,
     subsections: [
         {

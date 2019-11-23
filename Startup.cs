@@ -30,12 +30,12 @@ namespace Ativ4Mongo
         {
             services.AddCors(options =>
             {
-            options.AddPolicy(MyAllowSpecificOrigins,
-            builder =>
-            {
-                builder.WithOrigins("http://localhost:8080");
+                options.AddPolicy(MyAllowSpecificOrigins,
+                builder =>
+                {
+                    builder.WithOrigins("http://localhost:8080");
+                });
             });
-        });
             services.AddControllers();
             services.AddMvc().AddJsonOptions(options => {
                 options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;

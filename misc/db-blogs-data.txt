@@ -1,0 +1,32 @@
+db.Blogs.insertMany([
+{
+	"title" : "Blog da Univali",
+	"username" : "univali",
+	"password" : "campus1234",
+	"description": "Blog sobre a vida no campus"
+},
+{
+	"title" : "Blog de Big Data",
+	"username" : "bigdata",
+	"password" : "12345",
+	"description": "Blog sobre big data"
+},
+{
+	"title" : "Blog do Marcel",
+	"username" : "marcel",
+	"password" : "98765",
+	"description": "Blog do Marcel"
+},
+{
+	"title" : "Blog da Roberta",
+	"username" : "roberta",
+	"password" : "112233",
+	"description": "Blog sobre a vida da Roberta"
+},
+{
+	"title" : "Blog do Rafael",
+	"username" : "rafael",
+	"password" : "rafael123",
+	"description": "Blog do Rafael"
+}
+])

@@ -28,24 +28,24 @@ namespace Ativ4Mongo.backend.Api.Controllers
             return blogRepository.Get()
                 .Select(entidade => new BlogPreviewViewModel() {
                     Title = entidade.Title,
-                    Username = entidade.Username,
+                    Owner = entidade.Owner,
                     Description = entidade.Description,
                 } );
         }
         
         [HttpGet]
-        [Route("{username}")]
-        public IActionResult GetBlogByUsername(string username)
+        [Route("{owner}")]
+        public IActionResult GetBlogByOwner(string owner)
         {
-            if (!blogRepository.ExistsByUsername(username))
+            if (!blogRepository.ExistsByOwner(owner))
             {
                 return NotFound(); 
             }
 
-            var blog = blogRepository.GetByUsername(username);
+            var blog = blogRepository.GetByOwner(owner);
             return new ObjectResult(new BlogDetailsViewModel() {
                 Title = blog.Title,
-                Username = blog.Username,
+                Owner = blog.Owner,
                 Description = blog.Description,
                 Posts = blog.Posts?.Select(post => new PostPreviewViewModel(){
                     Title = post.Title,
@@ -58,18 +58,18 @@ namespace Ativ4Mongo.backend.Api.Controllers
         [HttpPost]
         public IActionResult CreateBlog([FromBody] NewBlogPayload blogPayload)
         {
-            if (blogPayload?.Username == null)
+            if (blogPayload?.Owner == null)
             {
                 return BadRequest();
             }
 
-            if (blogRepository.ExistsByUsername(blogPayload.Username))
+            if (blogRepository.ExistsByOwner(blogPayload.Owner))
             {
-                return Conflict("The provided username is already being used");
+                return Conflict("The provided owner is already being used");
             }
 
             var blog = new Blog(
-                blogPayload.Username,
+                blogPayload.Owner,
                 blogPayload.Password,
                 blogPayload.Title,
                 blogPayload.Description,
@@ -82,10 +82,10 @@ namespace Ativ4Mongo.backend.Api.Controllers
         }
 
         [HttpDelete]
-        [Route("{username}")]
-        public IActionResult Delete(string username)
+        [Route("{owner}")]
+        public IActionResult Delete(string owner)
         {
-            var deleted = blogRepository.DeleteByUsername(username);
+            var deleted = blogRepository.DeleteByOwner(owner);
             if (deleted)
             {
                 return Ok();

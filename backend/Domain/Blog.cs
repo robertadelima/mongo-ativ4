@@ -5,8 +5,8 @@ namespace Ativ4Mongo.backend.Domain
 {
     public class Blog : Entity
     {
-        [BsonElement("username")]
-        public string Username { get; private set; }
+        [BsonElement("owner")]
+        public string Owner { get; private set; }
         
         [BsonElement("password")]
         public string Password { get; private set; }
@@ -20,9 +20,9 @@ namespace Ativ4Mongo.backend.Domain
         [BsonElement("posts")]
         public List<Post> Posts { get; private set; }
        
-        public Blog(string username, string password, string title, string description, List<Post> posts)
+        public Blog(string owner, string password, string title, string description, List<Post> posts)
         {
-            Username = username;
+            Owner = owner;
             Password = password;
             Title = title;
             Description = description;

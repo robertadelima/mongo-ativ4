@@ -15,17 +15,17 @@ namespace Ativ4Mongo.backend.Infra.Repository
              return blogs;
         }
 
-        public Blog GetByUsername(string username)
+        public Blog GetByOwner(string owner)
         {
             return Collection
-                .Find(p => p.Username == username)
+                .Find(p => p.Owner == owner)
                 .ToList()
                 .FirstOrDefault();
         }
 
-        public bool ExistsByUsername(string username)
+        public bool ExistsByOwner(string owner)
         {
-            return GetByUsername(username) != null;
+            return GetByOwner(owner) != null;
         }
 
         public void Add(Blog blog)
@@ -33,16 +33,16 @@ namespace Ativ4Mongo.backend.Infra.Repository
            Collection.InsertOne(blog);
         }
 
-        public bool DeleteByUsername(string username)
+        public bool DeleteByOwner(string owner)
         {
-            var result = Collection.DeleteOne(blog => blog.Username.Equals(username));
+            var result = Collection.DeleteOne(blog => blog.Owner.Equals(owner));
             return result.IsAcknowledged && result.DeletedCount > 0;
         }
 
-        public void AddPostToBlogByUsername(string username, Post post)
+        public void AddPostToBlogByOwner(string owner, Post post)
         {
             Collection.UpdateOne(
-                blog => blog.Username.Equals(username),
+                blog => blog.Owner.Equals(owner),
                 Builders<Blog>.Update.Push(blog => blog.Posts, post)
             );
         }
