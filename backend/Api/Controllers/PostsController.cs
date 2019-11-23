@@ -13,47 +13,63 @@ namespace Ativ4Mongo.backend.Api.Controllers
     [Route("blogs/{username}")]
     public class PostsController : ControllerBase
     {
-        private readonly PostRepository postRepository;
+        private readonly PostSectionRepository postSectionRepository;
+        private readonly BlogRepository blogRepository;
 
-        public PostsController(PostRepository postRepository)
+        public PostsController(PostSectionRepository postSectionRepository, BlogRepository blogRepository)
         {
-            this.postRepository = postRepository;
+            this.postSectionRepository = postSectionRepository;
+            this.blogRepository = blogRepository;
         }
 
-        private List<PostSection> GetSectionsFromPayload(NewPostPayload postPayload)
+        private List<PostSection> MapSectionsPayloadToEntities(
+            List<NewPostPayload> postSectionsPayload,
+            Post post
+        )
         {
-            return null; // TODO: map newPostPayload sections to domain
+            return postSectionsPayload?.Select(sectionPayload => 
+                new PostSection(
+                    post,
+                    sectionPayload.Title,
+                    sectionPayload.Content,
+                    MapSectionsPayloadToEntities(sectionPayload.Subsections, post)
+                )
+            ).ToList();
         }
 
         [HttpPost]
         [Route("")]
-        public IActionResult CreatePost([FromBody] NewPostPayload postPayload)
+        public IActionResult CreatePost(string username, [FromBody] NewPostPayload postPayload)
         {
-            if (postPayload == null)
+            if (string.IsNullOrEmpty(username) || postPayload == null)
             {
                 return BadRequest();
             }
             
-            var postSections = GetSectionsFromPayload(postPayload);
-            var post = new Post(postPayload.Title, postPayload.Content, postSections);
-            postRepository.Add(post);
+            var post = new Post(postPayload.Title, postPayload.Content);
+            blogRepository.AddPostToBlogByUsername(username, post);
+
+            var postSections = MapSectionsPayloadToEntities(postPayload.Subsections, post);
+            postSectionRepository.Add(postSections);
 
             return Ok();
         }
 
+        /*
         [HttpDelete]
         [Route("{title}")]
         public IActionResult Delete(string title)
         {
-            var post = postRepository.GetByTitle(title);
+            var post = 
             if (post == null)
             {
                 return NotFound();
             }
             
-            postRepository.RemoveByTitle(title);
+            postSectionRepository.RemoveByTitle(title);
 
             return new NoContentResult();
         }
+        */
     }
 }

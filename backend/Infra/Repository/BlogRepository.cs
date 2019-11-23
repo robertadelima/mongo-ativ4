@@ -38,5 +38,13 @@ namespace Ativ4Mongo.backend.Infra.Repository
             var result = Collection.DeleteOne(blog => blog.Username.Equals(username));
             return result.IsAcknowledged && result.DeletedCount > 0;
         }
+
+        public void AddPostToBlogByUsername(string username, Post post)
+        {
+            Collection.UpdateOne(
+                blog => blog.Username.Equals(username),
+                Builders<Blog>.Update.Push(blog => blog.Posts, post)
+            );
+        }
     }
 }

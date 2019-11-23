@@ -9,6 +9,6 @@ namespace Ativ4Mongo.backend.Api.ViewModels
         public string Title { get; set; }
         public string Content { get; set; }
         public DateTime PublishDate { get; set; }
-        public List<PostSection> Sections {get; set;}
+        public List<PostSection> Sections { get; set; }
     }
 }
