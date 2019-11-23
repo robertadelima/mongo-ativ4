@@ -48,7 +48,8 @@ namespace Ativ4Mongo
                 });
                   services.AddSwaggerGen(c =>
                     {
-                        c.SwaggerDoc("v1", new OpenApiInfo { Title = "Values Api", Version = "v1" });
+                        c.SwaggerDoc("v1", new OpenApiInfo { Title = "Projeto MongoDB Blogs", Version = "1.0" });
+                        
                     });
 
             

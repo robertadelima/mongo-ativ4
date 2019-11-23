@@ -20,7 +20,7 @@ namespace Ativ4Mongo.backend.Api.Controllers
             this.blogRepository = blogRepository;
         }
 
-        [EnableCors]
+        
         [HttpGet]
         [Route("")]
         public IEnumerable<BlogPreviewViewModel> GetBlogs()
@@ -32,7 +32,11 @@ namespace Ativ4Mongo.backend.Api.Controllers
                     Description = entidade.Description,
                 } );
         }
-        
+        /// <summary>
+        /// Returns a collection of registered blogs sorted by their last post's publish date
+        /// </summary>
+        /// <param name="owner"> Blog's Owner</param>
+        /// <returns></returns>
         [HttpGet]
         [Route("{owner}")]
         public IActionResult GetBlogByOwner(string owner)
@@ -56,7 +60,7 @@ namespace Ativ4Mongo.backend.Api.Controllers
             });
         }  
 
-        [HttpPost]
+        [HttpPost]  
         [Route("")]
         public IActionResult CreateBlog([FromBody] NewBlogPayload blogPayload)
         {
