@@ -54,22 +54,5 @@ namespace Ativ4Mongo.backend.Api.Controllers
 
             return Ok();
         }
-
-        /*
-        [HttpDelete]
-        [Route("{title}")]
-        public IActionResult Delete(string title)
-        {
-            var post = 
-            if (post == null)
-            {
-                return NotFound();
-            }
-            
-            postSectionRepository.RemoveByTitle(title);
-
-            return new NoContentResult();
-        }
-        */
     }
 }

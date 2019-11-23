@@ -57,6 +57,7 @@ namespace Ativ4Mongo.backend.Api.Controllers
         }  
 
         [HttpPost]
+        [Route("")]
         public IActionResult CreateBlog([FromBody] NewBlogPayload blogPayload)
         {
             if (blogPayload?.Owner == null)
